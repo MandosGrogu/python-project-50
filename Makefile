@@ -12,3 +12,6 @@ lint:
 
 check: 
 	test lint
+
+test-coverage:
+	uv run pytest --cov=hexlet_python_package --cov-report xml
