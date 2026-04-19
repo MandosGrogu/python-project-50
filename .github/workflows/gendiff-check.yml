@@ -21,6 +21,9 @@ jobs:
       - name: Run linter and pytest
         run: |
           make check
+      - name: Open Web Client Directory
+        run: |
+          ls -la
       - name: Run test coverage
         run: |
           make test-coverage
