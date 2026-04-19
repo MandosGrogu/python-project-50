@@ -3,9 +3,9 @@ from gendiff.scripts.gendiff import generate_diff
 
 def test_gendiff():
 
-    #base_path = os.getenv('GITHUB_WORKSPACE', os.getcwd())
-    file1_path = './test_data/f1.json'
-    file2_path = './test_data/f2.json'
+    base_path = os.getenv('GITHUB_WORKSPACE', os.getcwd())
+    file1_path = os.path.join(os.getcwd(), 'test_data/f1.json')
+    file2_path = os.path.join(os.getcwd(), 'test_data/f2.json')
 
     assert generate_diff(file1_path, file2_path) == '''- follow: False
   host: hexlet.io
