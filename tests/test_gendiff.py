@@ -1,6 +1,14 @@
-def main():
-    print("Hello from python-project-50!")
+from gendiff.scripts.gendiff import generate_diff
 
+def test_gendiff():
 
-if __name__ == "__main__":
-    main()
+    file1_path = "test_data/f1.json"
+    file2_path = "test_data/f2.json"
+
+    assert generate_diff(file1_path, file2_path) == '''- follow: False
+  host: hexlet.io
+- proxy: 123.234.53.22
+- timeout: 50
++ timeout: 20
++ verbose: True
+'''
