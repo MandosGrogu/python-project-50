@@ -6,7 +6,6 @@ dist/
 wheels/
 *.egg-info
 *.cast
-*.json
 main.py
 .venv
 *Zone.Identifier
