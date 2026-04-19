@@ -34,5 +34,5 @@ jobs:
         with:
           args: >
             -Dsonar.projectKey=MandosGrogu_python-project-50
-            -Dsonar.organization=mandosgrogu-2
+            -Dsonar.organization=MandosGrogu
             -Dsonar.python.coverage.reportPaths=coverage.xml
