@@ -19,7 +19,6 @@ dev = [
     "pytest>=9.0.3",
     "pytest-cov>=7.1.0",
     "ruff>=0.15.11",
-    "tox>=4.53.0",
 ]
 
 [project.scripts] 
