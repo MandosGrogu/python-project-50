@@ -17,4 +17,5 @@
 [![gendiff-check Actions Status](https://github.com/MandosGrogu/python-project-50/actions/workflows/gendiff-check.yml/badge.svg)](https://github.com/MandosGrogu/python-project-50/actions)
 
 ## Demo
-[![gendiff first_file second_file](https://asciinema.org/a/RS4yJ6Q962aVKmIN)](https://asciinema.org/a/RS4yJ6Q962aVKmIN)
+[![gendiff first_file second_file IN JSON-FORMAT](https://asciinema.org/a/RS4yJ6Q962aVKmIN)](https://asciinema.org/a/RS4yJ6Q962aVKmIN)
+[![gendiff first_file second_file IN YAML-FORMAT](https://asciinema.org/a/e977oWMXsvfcYwby)](https://asciinema.org/a/e977oWMXsvfcYwby)
