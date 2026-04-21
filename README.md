@@ -19,3 +19,4 @@
 ## Demo
 [![gendiff first_file second_file IN JSON-FORMAT](https://asciinema.org/a/RS4yJ6Q962aVKmIN)](https://asciinema.org/a/RS4yJ6Q962aVKmIN)
 [![gendiff first_file second_file IN YAML-FORMAT](https://asciinema.org/a/e977oWMXsvfcYwby)](https://asciinema.org/a/e977oWMXsvfcYwby)
+[![gendiff work with nested structures](https://asciinema.org/a/2tIp4g3PoiIsMmcX)](https://asciinema.org/a/2tIp4g3PoiIsMmcX)
