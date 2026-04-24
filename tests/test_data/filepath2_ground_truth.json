@@ -1,31 +1,39 @@
 {
-  "common": {
-    "follow": false,
-    "setting1": "Value 1",
-    "setting3": null,
-    "setting4": "blah blah",
-    "setting5": {
-      "key5": "value5"
+    "common": {
+        "common": "[complex value]",
+        "common.setting1": "Value 1",
+        "common.setting5.key5": "value5",
+        "common.setting6": "[complex value]",
+        "common.setting6.doge": "[complex value]",
+        "common.setting6.key": "value",
+        "group1": "[complex value]",
+        "group1.foo": "bar",
+        "group1.nest.key": "value",
+        "group2.abc": 12345,
+        "group2.deep": "[complex value]",
+        "group2.deep.id": 45,
+        "group3.deep": "[complex value]",
+        "group3.deep.id": "[complex value]",
+        "group3.deep.id.number": 45,
+        "group3.fee": 100500
     },
-    "setting6": {
-      "key": "value",
-      "ops": "vops",
-      "doge": {
-        "wow": "so much"
-      }
+    "plus": {
+        "common.follow": false,
+        "common.setting3": null,
+        "common.setting4": "blah blah",
+        "common.setting5": "[complex value]",
+        "common.setting6.doge.wow": "so much",
+        "common.setting6.ops": "vops",
+        "group1.baz": "bars",
+        "group1.nest": "str",
+        "group3": "[complex value]"
+    },
+    "minus": {
+        "common.setting2": 200,
+        "common.setting3": true,
+        "common.setting6.doge.wow": "",
+        "group1.baz": "bas",
+        "group1.nest": "[complex value]",
+        "group2": "[complex value]"
     }
-  },
-  "group1": {
-    "foo": "bar",
-    "baz": "bars",
-    "nest": "str"
-  },
-  "group3": {
-    "deep": {
-      "id": {
-        "number": 45
-      }
-    },
-    "fee": 100500
-  }
 }
