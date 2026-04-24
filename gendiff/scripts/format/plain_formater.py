@@ -37,7 +37,7 @@ def add_full_paths(diff, parent=None):
 def plain_formatter(diff):
 
     dfp = add_full_paths(diff)
-    
+
     def inner(dfp):
 
         res = ''
@@ -52,16 +52,11 @@ def plain_formatter(diff):
             if isinstance(el_val, list) and el['diff_type'] == 'common':
                 res += inner(el_val)
             else:
-                if isinstance(el_val, list):
-                    r_v = '[complex value]'
-                elif isinstance(el_val, str):
-                    r_v = "'" + el_val + "'"
-                else:
-                    r_v = str(el_val)
+                r_v = format_val(el_val)
                 d_k = [n for n, ln in enumerate(dfp) if n != i and ln['key'] == el['key']]
 
                 if len(d_k) > 0:
-                    r_v1 = format_val(el_val)
+                    r_v1 = format_val(dfp[d_k[0]]['value'])
                     res += f'Property "{el['key']}" {D_T_C['_']}. From {r_v} to {r_v1}{s}'
                     check_i = i
                 elif el['diff_type'] == 'minus':
@@ -75,6 +70,7 @@ def plain_formatter(diff):
 
 
 def format_val(val):
+
     if isinstance(val, list):
         new_val = '[complex value]'
     elif isinstance(val, str):
