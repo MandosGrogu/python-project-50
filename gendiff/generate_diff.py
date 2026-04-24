@@ -13,38 +13,24 @@ APPROPRIATE_FILE_FORMATS = {
 }
 
 
-class Generate_diff:
+def read_file_acc_to_format(f):
 
-    def __init__(self, format_name=None):
+    file_format = f.split('.')[-1]
+    if file_format.lower() in APPROPRIATE_FILE_FORMATS.keys():
+        file_format = APPROPRIATE_FILE_FORMATS[file_format]
 
-        if format_name:
-            self.format_name = format_name
-        else:
-            self.format_name = 'stylish'
-    
-    def read_file_acc_to_format(self, f):
+    if file_format == 'json':
+        file = json_load(open(f))
+    elif file_format == 'yml':
+        file = yml_load(open(f), Loader=CLoader)
+    return file
 
-        self.f = f
 
-        self.file_format = self.f.split('.')[-1]
-        if self.file_format.lower() in APPROPRIATE_FILE_FORMATS.keys():
-            self.file_format = APPROPRIATE_FILE_FORMATS[self.file_format]
+def generate_diff(f1, f2, format_name='stylish'):
 
-        if self.file_format == 'json':
-            self.file = json_load(open(self.f))
-        elif self.file_format == 'yml':
-            self.file = yml_load(open(self.f), Loader=CLoader)
+    file1 = read_file_acc_to_format(f1)
+    file2 = read_file_acc_to_format(f2)
 
-        return self.file
+    diff = parse(file1, file2)
 
-    def get_diff(self, f1, f2, format_name='stylish'):
-
-        self.format_name = format_name
-        self.f1 = f1
-        self.f2 = f2
-        self.file1 = self.read_file_acc_to_format(self.f1)
-        self.file2 = self.read_file_acc_to_format(self.f2)
-
-        self.diff = parse(self.file1, self.file2)
-
-        return format_diff(self.diff, self.format_name)
+    return format_diff(diff, format_name)
