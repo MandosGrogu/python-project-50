@@ -1,6 +1,6 @@
 import os
 
-DIFF_TYPE_CONVERT = {
+D_T_C = {
     'minus': 'was removed',
     'plus': 'was added with value:',
     '_': 'was updated'
@@ -40,8 +40,9 @@ def plain_formatter(diff):
     
     def inner(dfp):
 
-        result_str = ''
+        res = ''
         check_i = -1
+        s = os.linesep
 
         for i, el in enumerate(dfp):
             if check_i != -1:
@@ -49,30 +50,26 @@ def plain_formatter(diff):
                 continue
             el_val = el['value']
             if isinstance(el_val, list) and el['diff_type'] == 'common':
-                result_str += inner(el_val)
+                res += inner(el_val)
             else:
                 if isinstance(el_val, list):
-                    res_val = '[complex value]'
+                    r_v = '[complex value]'
                 elif isinstance(el_val, str):
-                    res_val = "'" + el_val + "'"
+                    r_v = "'" + el_val + "'"
                 else:
-                    res_val = str(el_val)
+                    r_v = str(el_val)
                 d_k = [n for n, ln in enumerate(dfp) if n != i and ln['key'] == el['key']]
 
                 if len(d_k) > 0:
-                    res_val1 = format_val(el_val)
-                    result_str += f'Property "{el['key']}" \
-                    {DIFF_TYPE_CONVERT['_']}\
-                    . From {res_val} to {res_val1}{os.linesep}'
+                    r_v1 = format_val(el_val)
+                    res += f'Property "{el['key']}" {D_T_C['_']}. From {r_v} to {r_v1}{s}'
                     check_i = i
                 elif el['diff_type'] == 'minus':
-                    result_str += f'Property "{el['key']}" \
-                    {DIFF_TYPE_CONVERT[el['diff_type']]}{os.linesep}'
+                    res += f'Property "{el['key']}" {D_T_C[el['diff_type']]}{s}'
                 elif el['diff_type'] == 'plus':
-                    result_str += f'Property "{el['key']}" \
-                    {DIFF_TYPE_CONVERT[el['diff_type']]} {res_val}{os.linesep}'
+                    res += f'Property "{el['key']}" {D_T_C[el['diff_type']]} {r_v}{s}'
 
-        return result_str
+        return res
 
     return inner(dfp)
 

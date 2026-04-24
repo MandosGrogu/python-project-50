@@ -1,7 +1,7 @@
 import json
 import os
 
-from gendiff.scripts.gendiff import generate_diff
+from gendiff.scripts.generate_diff import generate_diff
 
 
 def test_gendiff():
@@ -21,7 +21,7 @@ def test_gendiff():
 
     with open(tru_p1, 'r', encoding='utf-8') as f:
         tru1 = f.read()
-
+    
     assert generate_diff(f1_json_p, f2_json_p, format_name='stylish') == tru1
 
     tru_p0 = os.path.join(os.getcwd(), 'tests/test_data/fpath2_gr_tru.json')
