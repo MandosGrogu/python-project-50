@@ -13,7 +13,7 @@ APPROPRIATE_FILE_FORMATS = {
 }
 
 
-class Generator:
+class Generate_diff:
 
     def __init__(self, format_name=None):
 
@@ -37,7 +37,7 @@ class Generator:
 
         return self.file
 
-    def generate_diff(self, f1, f2, format_name='stylish'):
+    def get_diff(self, f1, f2, format_name='stylish'):
 
         self.format_name = format_name
         self.f1 = f1
