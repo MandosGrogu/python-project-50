@@ -1,6 +1,6 @@
 from argparse import ArgumentParser
 
-from gendiff.generate_diff import generate_diff
+from gendiff.generate_diff import Generator
 
 
 def main():
@@ -19,9 +19,10 @@ def main():
     args = parser.parse_args()
 
     if args.first_file and args.second_file:
-        return generate_diff(args.first_file[0], 
-            args.second_file[0], 
-            format_name=args.format)
+        gen = Generator()
+        f1 = args.first_file[0]
+        f2 = args.second_file[0]
+        return gen.generate_diff(f1, f2, format_name=args.format)
 
 
 if __name__ == "__main__":
