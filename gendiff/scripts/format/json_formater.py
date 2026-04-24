@@ -1,8 +1,7 @@
-import os
-import re
 import json
 
 from gendiff.scripts.format.plain_formater import add_full_paths
+
 
 def json_formatter(diff):
 
@@ -10,25 +9,26 @@ def json_formatter(diff):
 
     def inner(diff):
 
-        result = {}
+        res = {}
+        cv = '[complex value]'
 
-        for i, element in enumerate(diff):
-            element_val = element['value']
-            if isinstance(element_val, list):
-                if element['diff_type'] not in result.keys():
-                    result[element['diff_type']] = {element['key']: '[complex value]'}
+        for i, el in enumerate(diff):
+            el_val = el['value']
+            if isinstance(el_val, list):
+                if el['diff_type'] not in res.keys():
+                    res[el['diff_type']] = {el['key']: cv}
                 else: 
-                    result[element['diff_type']] = result[element['diff_type']] | {element['key']: '[complex value]'}
-                for key in inner(element_val).keys():
-                    if key in result.keys():
-                        result[key] = result[key] | inner(element_val)[key]
+                    res[el['diff_type']] = res[el['diff_type']] | {el['key']: cv}
+                for key in inner(el_val).keys():
+                    if key in res.keys():
+                        res[key] = res[key] | inner(el_val)[key]
                     else:
-                        result[key] = inner(element_val)[key]
+                        res[key] = inner(el_val)[key]
             else:
-                if element['diff_type'] in result.keys():
-                    result[element['diff_type']] = result[element['diff_type']] | {element['key']: element_val}
+                if el['diff_type'] in res.keys():
+                    res[el['diff_type']] = res[el['diff_type']] | {el['key']: el_val}
                 else:
-                    result[element['diff_type']] = {element['key']: element_val}
-        return result
+                    res[el['diff_type']] = {el['key']: el_val}
+        return res
 
     return json.dumps(inner(diff_with_full_paths), indent=4)

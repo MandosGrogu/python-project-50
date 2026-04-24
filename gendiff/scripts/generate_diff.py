@@ -1,6 +1,8 @@
 from json import load as json_load
+
 from yaml import CLoader
 from yaml import load as yml_load
+
 from gendiff.scripts.file_parse import parse
 from gendiff.scripts.format.format import format_diff
 
@@ -9,6 +11,7 @@ APPROPRIATE_FILE_FORMATS = {
     'yml': 'yml',
     'json': 'json'
 }
+
 
 def read_file_acc_to_format(f):
 
@@ -21,6 +24,7 @@ def read_file_acc_to_format(f):
     elif file_format == 'yml':
         file = yml_load(open(f), Loader=CLoader)
     return file
+
 
 def generate_diff(f1, f2, format_name='stylish'):
 

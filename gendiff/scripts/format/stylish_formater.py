@@ -1,22 +1,29 @@
 import os
 
-INDENT = 4
+IND = 4
 
-DIFF_TYPE_CONVERT ={
+D_TP = {
     'minus': '-',
     'plus': '+',
     'common': ' '
 }
 
+
 def stylish_formatter(diff):
-    result_str = ''
 
-    for element in diff:
-        element_val = element['value']
-        if isinstance(element_val, list):
-            result_str += f'{" " * ((element['lvl']*INDENT)-2)}{DIFF_TYPE_CONVERT[element['diff_type']]} {element['key']}: {"{"}{os.linesep}'
-            result_str += f'{stylish_formatter(element_val)}{os.linesep}{" " * ((element['lvl']*INDENT))}{"}"}{os.linesep}'
+    res_str = ''
+    n = os.linesep
+
+    for el in diff:
+        el_v = el['value']
+        if isinstance(el_v, list):
+            res_str += f'{" " * ((el['lvl'] * IND) - 2)}\
+            {D_TP[el['diff_type']]} {el['key']}: {"{"}{n}'
+            res_str += f'{stylish_formatter(el_v)}{n}\
+            {" " * ((el['lvl'] * IND))}{"}"}{n}'
         else:
-            result_str += f'{" " * ((element['lvl']*INDENT)-2)}{DIFF_TYPE_CONVERT[element['diff_type']]} {element['key']}: {element_val}{os.linesep}'
 
-    return result_str.replace("\n\n", "\n")
+            res_str += f'{" " * ((el['lvl'] * IND) - 2)}\
+            {D_TP[el['diff_type']]} {el['key']}: {el_v}{n}'
+
+    return res_str.replace("\n\n", "\n")

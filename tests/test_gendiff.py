@@ -1,39 +1,40 @@
-import os
 import json
+import os
+
 from gendiff.scripts.gendiff import generate_diff
+
 
 def test_gendiff():
 
-    base_path = os.getenv('GITHUB_WORKSPACE', os.getcwd())
-    file1_path = os.path.join(os.getcwd(), 'tests/test_data/f1.json')
-    file2_path = os.path.join(os.getcwd(), 'tests/test_data/f2.json')
-    ground_truth_path = os.path.join(os.getcwd(), 'tests/test_data/f2_ground_truth.txt')
+    f1_p = os.path.join(os.getcwd(), 'tests/test_data/f1.json')
+    f2_p = os.path.join(os.getcwd(), 'tests/test_data/f2.json')
+    tru_p = os.path.join(os.getcwd(), 'tests/test_data/f2_gr_tru.txt')
 
-    with open(ground_truth_path, 'r', encoding='utf-8') as f:
-        ground_truth = f.read()
+    with open(tru_p, 'r', encoding='utf-8') as f:
+        tru = f.read()
+        
+    assert generate_diff(f1_p, f2_p) == tru
 
-    assert generate_diff(file1_path, file2_path) == ground_truth
+    f1_json_p = os.path.join(os.getcwd(), 'tests/test_data/filepath1.json')
+    f2_json_p = os.path.join(os.getcwd(), 'tests/test_data/filepath2.json')
+    tru_p1 = os.path.join(os.getcwd(), 'tests/test_data/fpath2_gr_tru.txt')
 
-    file1_nested_json_path = os.path.join(os.getcwd(), 'tests/test_data/filepath1.json')
-    file2_nested_json_path = os.path.join(os.getcwd(), 'tests/test_data/filepath2.json')
-    ground_truth_path1 = os.path.join(os.getcwd(), 'tests/test_data/filepath2_ground_truth.txt')
+    with open(tru_p1, 'r', encoding='utf-8') as f:
+        tru1 = f.read()
 
-    with open(ground_truth_path1, 'r', encoding='utf-8') as f:
-        ground_truth1 = f.read()
+    assert generate_diff(f1_json_p, f2_json_p, format_name='stylish') == tru1
 
-    assert generate_diff(file1_nested_json_path, file2_nested_json_path, format_name='stylish') == ground_truth1
+    tru_p0 = os.path.join(os.getcwd(), 'tests/test_data/fpath2_gr_tru.json')
 
-    ground_truth_path0 = os.path.join(os.getcwd(), 'tests/test_data/filepath2_ground_truth.json')
-
-    ground_truth0 = json.dumps(json.load(open(ground_truth_path0)), indent=4)
+    tru0 = json.dumps(json.load(open(tru_p0)), indent=4)
     
-    assert generate_diff(file1_nested_json_path, file2_nested_json_path, format_name='json') == ground_truth0
+    assert generate_diff(f1_json_p, f2_json_p, format_name='json') == tru0
 
-    file1_nested_yaml_path = os.path.join(os.getcwd(), 'tests/test_data/filepath1.yaml')
-    file2_nested_yaml_path = os.path.join(os.getcwd(), 'tests/test_data/filepath2.yaml')
-    ground_truth_path2 = os.path.join(os.getcwd(), 'tests/test_data/filepath2_yml_ground_truth.txt')
+    f1_yml_p = os.path.join(os.getcwd(), 'tests/test_data/filepath1.yaml')
+    f2_yml_p = os.path.join(os.getcwd(), 'tests/test_data/filepath2.yaml')
+    tru_p2 = os.path.join(os.getcwd(), 'tests/test_data/fpath2_yml_gr_tru.txt')
 
-    with open(ground_truth_path2, 'r', encoding='utf-8') as f:
-        ground_truth2 = f.read()
+    with open(tru_p2, 'r', encoding='utf-8') as f:
+        tru2 = f.read()
 
-    assert generate_diff(file1_nested_yaml_path, file2_nested_yaml_path, format_name='plain') == ground_truth2
+    assert generate_diff(f1_yml_p, f2_yml_p, format_name='plain') == tru2
