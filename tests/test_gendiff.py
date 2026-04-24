@@ -21,13 +21,13 @@ def test_gendiff():
     with open(ground_truth_path1, 'r', encoding='utf-8') as f:
         ground_truth1 = f.read()
 
-    assert generate_diff(file1_nested_json_path, file2_nested_json_path, stylish) == ground_truth1
+    assert generate_diff(file1_nested_json_path, file2_nested_json_path, format_name='stylish') == ground_truth1
 
     ground_truth_path0 = os.path.join(os.getcwd(), 'tests/test_data/filepath2_ground_truth.json')
 
     ground_truth0 = json_load(open(f))
 
-    assert generate_diff(file1_nested_json_path, file2_nested_json_path, json) == ground_truth0
+    assert generate_diff(file1_nested_json_path, file2_nested_json_path, format_name='json') == ground_truth0
 
     file1_nested_yaml_path = os.path.join(os.getcwd(), 'tests/test_data/filepath1.yml')
     file2_nested_yaml_path = os.path.join(os.getcwd(), 'tests/test_data/filepath2.yml')
@@ -36,4 +36,4 @@ def test_gendiff():
     with open(ground_truth_path2, 'r', encoding='utf-8') as f:
         ground_truth2 = f.read()
 
-    assert generate_diff(file1_nested_yaml_path, file2_nested_yaml_path, plain) == ground_truth2
+    assert generate_diff(file1_nested_yaml_path, file2_nested_yaml_path, format_name='plain') == ground_truth2
