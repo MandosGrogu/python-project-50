@@ -8,15 +8,7 @@ DIFF_TYPE_CONVERT ={
     'common': ' '
 }
 
-def format_diff(diff, format_name):
-
-    if format_name == 'stylish':
-        formatted_str = stylish_formatter(diff)
-
-    return formatted_str
-
 def stylish_formatter(diff):
-
     result_str = ''
 
     for element in diff:
