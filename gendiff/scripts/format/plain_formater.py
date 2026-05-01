@@ -1,4 +1,5 @@
 import os
+from json import dumps as js_dumps
 
 D_T_C = {
     'minus': 'was removed',
@@ -76,5 +77,5 @@ def format_val(val):
     elif isinstance(val, str):
         new_val = "'" + val + "'"
     else:
-        new_val = str(val)
+        new_val = js_dumps(val)
     return new_val

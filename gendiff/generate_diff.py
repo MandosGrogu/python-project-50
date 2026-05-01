@@ -1,4 +1,4 @@
-from json import loads as json_load
+from json import load as json_load
 
 from yaml import CLoader
 from yaml import load as yml_load
@@ -20,7 +20,7 @@ def read_file_acc_to_format(f):
         file_format = APPROPRIATE_FILE_FORMATS[file_format]
 
     if file_format == 'json':
-        file = json_load(open(f).read())
+        file = json_load(open(f))
     elif file_format == 'yml':
         file = yml_load(open(f), Loader=CLoader)
     return file
