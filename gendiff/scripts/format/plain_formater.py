@@ -58,12 +58,12 @@ def plain_formatter(diff):
 
                 if len(d_k) > 0:
                     r_v1 = format_val(dfp[d_k[0]]['value'])
-                    res += f'Property "{el['key']}" {D_T_C['_']}. From {r_v} to {r_v1}{s}'
+                    res += f"Property '{el['key']}' {D_T_C['_']}. From {r_v} to {r_v1}{s}"
                     check_i = i
                 elif el['diff_type'] == 'minus':
-                    res += f'Property "{el['key']}" {D_T_C[el['diff_type']]}{s}'
+                    res += f"Property '{el['key']}' {D_T_C[el['diff_type']]}{s}"
                 elif el['diff_type'] == 'plus':
-                    res += f'Property "{el['key']}" {D_T_C[el['diff_type']]} {r_v}{s}'
+                    res += f"Property '{el['key']}' {D_T_C[el['diff_type']]} {r_v}{s}"
 
         return res
 

@@ -26,6 +26,7 @@ def stylish_formatter(diff):
 
     return res_str.replace("\n\n", "\n")
 
+
 def format_val(val):
 
     if not isinstance(val, str):
