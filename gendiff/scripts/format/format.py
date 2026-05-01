@@ -8,7 +8,7 @@ def format_diff(diff, format_name):
     if format_name == 'stylish':
         formatted_str = '{\n' + stylish_formatter(diff) + '}'
     elif format_name == 'plain':
-        formatted_str = plain_formatter(diff)
+        formatted_str = plain_formatter(diff).strip()
     elif format_name == 'json':
         formatted_str = json_formatter(diff)
 
