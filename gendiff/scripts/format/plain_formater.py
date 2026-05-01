@@ -50,20 +50,25 @@ def plain_formatter(diff):
                 check_i = -1
                 continue
             el_val = el['value']
-            if isinstance(el_val, list) and el['diff_type'] == 'common':
+            if isinstance(el_val, list) and el['df_tp'] == 'common':
                 res += inner(el_val)
             else:
                 r_v = format_val(el_val)
-                d_k = [n for n, ln in enumerate(dfp) if n != i and ln['key'] == el['key']]
+                d_k = []
+                for n, ln in enumerate(dfp):
+                    if n != i and ln['key'] == el['key']:
+                        d_k.append(n)
 
                 if len(d_k) > 0:
                     r_v1 = format_val(dfp[d_k[0]]['value'])
-                    res += f"Property '{el['key']}' {D_T_C['_']}. From {r_v} to {r_v1}{s}"
+                    res += f"Property '{el['key']}' {D_T_C['_']}"
+                    res += f". From {r_v} to {r_v1}{s}"
                     check_i = i
-                elif el['diff_type'] == 'minus':
-                    res += f"Property '{el['key']}' {D_T_C[el['diff_type']]}{s}"
-                elif el['diff_type'] == 'plus':
-                    res += f"Property '{el['key']}' {D_T_C[el['diff_type']]} {r_v}{s}"
+                elif el['df_tp'] == 'minus':
+                    res += f"Property '{el['key']}' {D_T_C[el['df_tp']]}{s}"
+                elif el['df_tp'] == 'plus':
+                    res += f"Property '{el['key']}' "
+                    res += f"{D_T_C[el['df_tp']]} {r_v}{s}"
 
         return res
 
