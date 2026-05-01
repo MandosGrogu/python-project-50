@@ -21,7 +21,15 @@ def stylish_formatter(diff):
             res_str += f'{" " * ((el['lvl'] * IND) - 2)}{D_TP[el['diff_type']]} {el['key']}: {"{"}{n}'
             res_str += f'{stylish_formatter(el_v)}{n}{" " * ((el['lvl'] * IND))}{"}"}{n}'
         else:
-
-            res_str += f'{" " * ((el['lvl'] * IND) - 2)}{D_TP[el['diff_type']]} {el['key']}: {js_dumps(el_v)}{n}'
+            js_val = format_val(el_v)
+            res_str += f'{" " * ((el['lvl'] * IND) - 2)}{D_TP[el['diff_type']]} {el['key']}: {js_val}{n}'
 
     return res_str.replace("\n\n", "\n")
+
+def format_val(val):
+
+    if not isinstance(val, str):
+        new_val = js_dumps(val)
+    else:
+        new_val = val
+    return new_val
