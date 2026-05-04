@@ -3,8 +3,8 @@ from json import load as json_load
 from yaml import CLoader
 from yaml import load as yml_load
 
+from gendiff.formatters.format import format_diff
 from gendiff.scripts.file_parse import parse
-from gendiff.scripts.format.format import format_diff
 
 APPROPRIATE_FILE_FORMATS = {
     'yaml': 'yml',

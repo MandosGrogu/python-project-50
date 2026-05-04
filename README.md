@@ -13,8 +13,21 @@
 
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/MandosGrogu/python-project-50/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/MandosGrogu/python-project-50/actions)
-[![build Actions Status](https://github.com/MandosGrogu/python-project-50/actions/workflows/build.yml/badge.svg)](https://github.com/MandosGrogu/python-project-50/actions)
 [![gendiff-check Actions Status](https://github.com/MandosGrogu/python-project-50/actions/workflows/gendiff-check.yml/badge.svg)](https://github.com/MandosGrogu/python-project-50/actions)
+
+### ABOUT
+The project allowes you to generate difference between 2 files in either json or yaml format in plain, stylish or json way. Stylish format is used by default.
+
+## Installation
+```
+python3 -m pip install --user git+https://github.com/MandosGrogu/python-project-50.git
+```
+
+### Usage
+Use this command to get difference between 2 files. You can omit the option -f/--format, then default value (stylish) will be used, or choose other available variant appropriate for you:
+```
+gendiff <file_name_1> <file_name_2>  -f <stylish/plain/json>
+```
 
 ## Demo
 [![gendiff first_file second_file IN JSON-FORMAT](https://asciinema.org/a/RS4yJ6Q962aVKmIN)](https://asciinema.org/a/RS4yJ6Q962aVKmIN)

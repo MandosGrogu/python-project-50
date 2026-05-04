@@ -24,4 +24,4 @@ dev = [
 ]
 
 [project.scripts] 
-gendiff = "gendiff.generate:main"
+gendiff = "gendiff.scripts.generate:main"

@@ -1,7 +1,7 @@
 import json
 import os
 
-from gendiff import generate_diff
+from gendiff.scripts import generate_diff
 
 
 def test_gendiff():

@@ -1,0 +1,34 @@
+import json
+
+from gendiff.formatters.plain_formater import add_full_paths
+
+
+def json_formatter(diff):
+
+    diff_with_full_paths = add_full_paths(diff)
+
+    def inner(diff):
+
+        res = {}
+        cv = '[complex value]'
+
+        for i, el in enumerate(diff):
+            el_val = el['value']
+            if isinstance(el_val, list):
+                if el['df_tp'] not in res.keys():
+                    res[el['df_tp']] = {el['key']: cv}
+                else: 
+                    res[el['df_tp']] = res[el['df_tp']] | {el['key']: cv}
+                for key in inner(el_val).keys():
+                    if key in res.keys():
+                        res[key] = res[key] | inner(el_val)[key]
+                    else:
+                        res[key] = inner(el_val)[key]
+            else:
+                if el['df_tp'] in res.keys():
+                    res[el['df_tp']] = res[el['df_tp']] | {el['key']: el_val}
+                else:
+                    res[el['df_tp']] = {el['key']: el_val}
+        return res
+
+    return json.dumps(inner(diff_with_full_paths), indent=4)
